@@ -18,37 +18,37 @@ import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 export class TasksController {
   constructor(private tasksService: TasksService) {}
 
-//   @Get()
-//   getTasks(@Query() filterDto: GetTasksFilterDto): Task[] {
-//     if (Object.keys(filterDto).length) {
-//       return this.tasksService.getTasksWithFilter(filterDto);
-//     } else {
-//       return this.tasksService.getAllTasks();
-//     }
-//   }
+  @Get()
+  getTasks(@Query() filterDto: GetTasksFilterDto): Task[] {
+    if (Object.keys(filterDto).length) {
+      return this.tasksService.getTasksWithFilter(filterDto);
+    } else {
+      return this.tasksService.getAllTasks();
+    }
+  }
 
-//   @Post()
-//   createTask(@Body() createTaskDto: CreateTaskDto): Task {
-//     return this.tasksService.createTask(createTaskDto);
-//   }
+  @Post()
+  createTask(@Body() createTaskDto: CreateTaskDto): Task {
+    return this.tasksService.createTask(createTaskDto);
+  }
+  
+  @Get('/:id')
+  getTaskById(@Param('id') id: string): Task {
+    return this.tasksService.getTaskById(id);
+  }
 
-//   @Get('/:id')
-//   getTaskById(@Param('id') id: string): Task {
-//     return this.tasksService.getTaskById(id);
-//   }
+  @Delete('/:id')
+  deleteTaskById(@Param('id') id: string): void {
+    this.tasksService.deleteTaskById(id);
+  }
 
-//   @Delete('/:id')
-//   deleteTaskById(@Param('id') id: string): void {
-//     this.tasksService.deleteTaskById(id);
-//   }
-
-//   @Patch('/:id/status')
-//   updateTaskStatus(
-//     @Param('id') id: string,
-//     @Body() updateTaskStatusDto: UpdateTaskStatusDto,
-//   ): Task {
-//     // destructure
-//     const { status } = updateTaskStatusDto;
-//     return this.tasksService.updateTaskStatus(id, status);
-//   }
+  @Patch('/:id/status')
+  updateTaskStatus(
+    @Param('id') id: string,
+    @Body() updateTaskStatusDto: UpdateTaskStatusDto,
+  ): Task {
+    // destructure
+    const { status } = updateTaskStatusDto;
+    return this.tasksService.updateTaskStatus(id, status);
+  }
 }
