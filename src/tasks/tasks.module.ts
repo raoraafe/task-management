@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TaskRepository } from './tasks.repository';
+import { Task } from './task.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TaskRepository])], // Feature for sub-modules - dependency injection provided
+  imports: [TypeOrmModule.forFeature([Task])], // Feature for sub-modules - dependency injection provided
   controllers: [TasksController],
   providers: [TasksService],
 })
