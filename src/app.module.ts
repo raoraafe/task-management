@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 // Route module
 // @nestjs/common
 // Modules are singleton
@@ -18,6 +19,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true, // implicit loading of entities avoid explicit loading maually
       synchronize: true,
     }),
+    AuthModule,
   ],
 })
 export class AppModule {}
