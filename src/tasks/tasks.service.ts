@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Task } from './task.entity';
@@ -11,6 +11,9 @@ import { User } from 'src/auth/user.entity';
 @Injectable()
 export class TasksService {
   
+  // Class name as the context and timestamp
+  private logger = new Logger('TasksController', {timestamp: true});
+
   constructor(
     @InjectRepository(Task) private tasksRepository: Repository<Task>,
   ) {}
@@ -80,9 +83,15 @@ export class TasksService {
         { search: `%${search}%` },
       );
     }
+    try {
 
-    const tasks = await query.getMany();
+      const tasks = await query.getMany();
+      return tasks;
 
-    return tasks;
+    } catch(error) {
+
+      this.logger.error(`Failed to fetch data for user: "${user.username}". Filters: ${JSON.stringify(filterDto)}`, error.stack,);
+      throw new InternalServerErrorException();
+    }
   }
 }
