@@ -71,3 +71,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Notes
+
+Heroku package requires NodeJS 16.20 version - install `nvm install 16` (for lts package use just 16)
+
+Install yarn again as it won't work after nodejs version switch `npm install -g yarn`

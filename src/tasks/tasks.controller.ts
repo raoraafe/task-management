@@ -16,8 +16,8 @@ import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
 import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 import { Task } from './task.entity';
 import { AuthGuard } from '@nestjs/passport';
-import { GetUser } from 'src/auth/get-user.deorator';
-import { User } from 'src/auth/user.entity';
+import { GetUser } from '../auth/get-user.deorator';
+import { User } from '../auth/user.entity';
 
 @Controller('tasks')
 @UseGuards(AuthGuard())
@@ -26,7 +26,9 @@ export class TasksController {
   // Class name as the context
   private logger = new Logger('TasksController');
 
-  constructor(private tasksService: TasksService) {}
+  constructor(
+    private tasksService: TasksService,
+    ) {}
 
   @Get('/:id')
   getTaskById(

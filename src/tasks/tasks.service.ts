@@ -5,7 +5,7 @@ import { Task } from './task.entity';
 import { FindOneOptions, Repository } from 'typeorm';
 import { TaskStatus } from './task.status';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
-import { User } from 'src/auth/user.entity';
+import { User } from '../auth/user.entity';
 
 // Singleton DI -  The @Injectable() decorator marks the TasksService class as a provider.
 @Injectable()
